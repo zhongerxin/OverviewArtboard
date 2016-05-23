@@ -10,5 +10,7 @@ A plugin that helps you to create a artboard include all other artboards
 
 ###2. 运行插件生成总览画板
 ![image](https://github.com/zhongerxin/OverviewArtboard/blob/master/Resource/create%20overview.png)
+生成的这个总览画板会在每个画板下方标注该画板的名称
 
+最后导出这个总览画板
   
