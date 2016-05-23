@@ -1,0 +1,24 @@
+{
+  "author" : "twox",
+  "commands" : [
+    {
+      "script" : "script.cocoascript",
+      "handler" : "onRun",
+      "shortcut" : "",
+      "name" : "overview artboard",
+      "identifier" : "overview artboard"
+    }
+  ],
+  "menu" : {
+    "items" : [
+      "overview artboard"
+    ],
+    "title" : "overview artboard"
+  },
+  "identifier" : "com.example.sketch.bfde0775-9730-4d78-b866-dfd0d7428201",
+  "author" : "twox",
+  "version" : "1.0",
+  "description" : "A plugin that helps you to create a artboard include all other artboards",
+  "authorEmail" : "zhongxin123456@gmail.com",
+  "name" : "overview artboard"
+}

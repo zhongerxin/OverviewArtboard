@@ -1,0 +1,61 @@
+var onRun = function(context) {
+    (function() {
+        var doc = context.document,
+            artboards = context.selection,
+            count = artboards.count();
+        if (count <= 0) return;
+
+        var MinX;
+        var MaxX;
+        var MinY;
+        var MaxY;
+        var MaxYH;
+        var MaxXW;
+        // 初始值全部赋为 artboards第一项的对应值
+        MinX = MaxX = artboards[0].frame().x();
+        MinY = MaxY = artboards[0].frame().y();
+        MaxXW = artboards[0].frame().width();
+        MaxYH = artboards[0].frame().height();
+        //get
+        for (var i = 0; i < count; i++) {
+            var x = artboards[i].frame().x();
+            var y = artboards[i].frame().y();
+            var w = artboards[i].frame().width();
+            var h = artboards[i].frame().height();
+
+            if (x < MinX) MinX = x;
+            if (x > MaxX) MaxX = x;
+            if (y < MinY) MinY = y;
+            if (y > MaxY) MaxY = y;
+            if (w > MaxXW) MaxXW = w;
+            if (h > MaxYH) MaxYH = h;
+        }
+        //create new artboard
+        var height = MaxY + MaxYH - MinY + 200
+        var width = MaxX + MaxXW - MinX + 200
+        var newArtboard = MSArtboardGroup.new()
+        var newArtboardName = doc.currentPage().name() + " Overview"
+        newArtboard.setName(newArtboardName)
+        var frame = newArtboard.frame()
+        frame.setX(MinX - 100)
+        frame.setY(MinY - 100)
+        frame.setWidth(width)
+        frame.setHeight(height)
+        doc.currentPage().addLayers([newArtboard])
+
+        //create artboards title
+        for (var i = 0; i < artboards.count(); i++) {
+            var artboard = artboards[i]
+            var layer = MSLayerGroup.new();
+            var title = layer.addLayerOfType("text")
+            title.setFontPostscriptName = "PingFang SC"
+            title.setFontSize(16)
+            var titleFrame = title.frame()
+            title.setStringValue(artboard.name())
+            titleFrame.setX(artboard.frame().x() - newArtboard.frame().x())
+            titleFrame.setY(artboard.frame().y() - newArtboard.frame().y() + artboard.frame().height() + 10)
+            newArtboard.addLayers([title])
+        }
+
+    })();
+};
