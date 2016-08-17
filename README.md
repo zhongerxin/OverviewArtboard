@@ -14,4 +14,7 @@ A plugin that helps you to create a artboard include all other artboards
 生成的这个总览画板会在每个画板下方标注该画板的名称
 
 最后导出这个总览画板
+
+## 更新
+1.2 修复了sketch 3.9 不能显示画板名称的BUG
   
