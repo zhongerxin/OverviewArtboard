@@ -46,12 +46,16 @@ var onRun = function(context) {
         //create artboards title
         for (var i = 0; i < artboards.count(); i++) {
             var artboard = artboards[i]
-            var layer = MSLayerGroup.new();
-            var title = layer.addLayerOfType("text")
-            title.setFontPostscriptName = "PingFang SC"
-            title.setFontSize(16)
+            //var layer = MSLayerGroup.new();
+            //var title = layer.addLayerOfType("text")
+            
+            var title = MSTextLayer.alloc().initWithFrame_(NSMakeRect(0, 0, 100, 100))
+            //title.setFontPostscriptName = "PingFang SC"
+            //title.setFontSize(16)
+            title.font = NSFont.systemFontOfSize_(18.0)
             var titleFrame = title.frame()
             title.setStringValue(artboard.name())
+            title.adjustFrameToFit()
             titleFrame.setX(artboard.frame().x() - newArtboard.frame().x())
             titleFrame.setY(artboard.frame().y() - newArtboard.frame().y() + artboard.frame().height() + 10)
             newArtboard.addLayers([title])
