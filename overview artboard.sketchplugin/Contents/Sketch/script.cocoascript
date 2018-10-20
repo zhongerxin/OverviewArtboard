@@ -33,15 +33,15 @@ var onRun = function(context) {
         //create new artboard
         var height = MaxY + MaxYH - MinY + 200
         var width = MaxX + MaxXW - MinX + 200
-        var newArtboard = MSArtboardGroup.new()
-        var newArtboardName = doc.currentPage().name() + " Overview"
-        newArtboard.setName(newArtboardName)
-        var frame = newArtboard.frame()
+        var newSlice = MSSliceLayer.new()
+        var newSliceName = doc.currentPage().name() + " Overview"
+        newSlice.setName(newSliceName)
+        var frame = newSlice.frame()
         frame.setX(MinX - 100)
         frame.setY(MinY - 100)
         frame.setWidth(width)
         frame.setHeight(height)
-        doc.currentPage().addLayers([newArtboard])
+        doc.currentPage().addLayers([newSlice])
 
         //create artboards title
         for (var i = 0; i < artboards.count(); i++) {
@@ -55,11 +55,14 @@ var onRun = function(context) {
             title.font = NSFont.systemFontOfSize_(18.0)
             var titleFrame = title.frame()
             title.setStringValue(artboard.name())
+            title.setName(artboard.name())
             title.adjustFrameToFit()
-            titleFrame.setX(artboard.frame().x() - newArtboard.frame().x())
-            titleFrame.setY(artboard.frame().y() - newArtboard.frame().y() + artboard.frame().height() + 10)
-            newArtboard.addLayers([title])
+            titleFrame.setX(artboard.frame().x())
+            titleFrame.setY(artboard.frame().y() + artboard.frame().height() + 10)
+            doc.currentPage().addLayers([title])
+            MSLayerMovement.moveToBack([title]);
         }
+        MSLayerMovement.moveToBack([newSlice]);
 
     })();
 };

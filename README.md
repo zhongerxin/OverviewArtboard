@@ -16,5 +16,6 @@ A plugin that helps you to create a artboard include all other artboards
 最后导出这个总览画板
 
 ## 更新
+1.3 导出修改为 Slice 
 1.2 修复了sketch 3.9 不能显示画板名称的BUG
   
